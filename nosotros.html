@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ferretería Los Maestros — Nosotros</title>
+  <link href="css/vendor/bootstrap.min.css" rel="stylesheet">
+  <link href="css/vendor/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="css/estilos.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ==================== NAVBAR ==================== -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-marca fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html"><i class="bi bi-hammer"></i> Ferretería Los Maestros</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
+              aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="productos.html">Productos</a></li>
+          <li class="nav-item"><a class="nav-link" href="nosotros.html">Nosotros</a></li>
+          <li class="nav-item"><a class="nav-link" href="blogs.html">Blogs</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-3">
+          <div id="zona-usuario" class="d-flex align-items-center text-white small"></div>
+          <a href="carrito.html" class="btn btn-outline-light position-relative">
+            <i class="bi bi-cart"></i>
+            <span class="badge rounded-pill bg-danger contador-carrito"
+                  style="position:absolute; top:-8px; right:-8px;">0</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==================== CONTENIDO ==================== -->
+  <main class="container my-4">
+    <h1 class="titulo-seccion">Sobre nosotros</h1>
+
+    <div class="row align-items-center g-4 mb-5">
+      <div class="col-md-7">
+        <p class="fs-5">
+          <strong>Ferretería Los Maestros</strong> es un negocio familiar ubicado en
+          <strong>La Serena, Región de Coquimbo</strong>, con <strong>22 años de trayectoria</strong>.
+          Es atendido por el dueño, su hijo y dos empleados de planta.
+        </p>
+        <p>
+          Vendemos materiales de construcción, herramientas eléctricas y manuales,
+          gasfitería, electricidad y artículos de ferretería general. Nuestro catálogo
+          supera las <strong>800 referencias</strong>.
+        </p>
+        <p>
+          Nuestros principales clientes son <strong>particulares</strong> que compran para
+          sus hogares y <strong>contratistas y maestros de obra</strong> que compran con
+          mayor frecuencia y en volúmenes más grandes.
+        </p>
+      </div>
+      <div class="col-md-5 text-center">
+        <i class="bi bi-shop" style="font-size:8rem; color:#e8590c;"></i>
+      </div>
+    </div>
+
+    <!-- Misión / Visión / Valores en tarjetas -->
+    <div class="row g-4 mb-5">
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm text-center p-3">
+          <div class="card-body">
+            <i class="bi bi-bullseye fs-1 text-primary mb-2"></i>
+            <h3 class="h5">Misión</h3>
+            <p class="small">Entregar materiales y herramientas de calidad con atención cercana y honesta a cada cliente.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm text-center p-3">
+          <div class="card-body">
+            <i class="bi bi-eye fs-1 text-primary mb-2"></i>
+            <h3 class="h5">Visión</h3>
+            <p class="small">Ser la ferretería de referencia de la Región de Coquimbo, modernizando nuestra atención con tecnología.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm text-center p-3">
+          <div class="card-body">
+            <i class="bi bi-heart fs-1 text-primary mb-2"></i>
+            <h3 class="h5">Valores</h3>
+            <p class="small">Cercanía, confianza, compromiso con el maestro y el vecino, y respeto por el trabajo bien hecho.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Equipo de desarrollo -->
+    <h2 class="titulo-seccion">Equipo de desarrollo</h2>
+    <p class="text-muted">Estudiantes de DSY1104 – Desarrollo FullStack II, DuocUC.</p>
+    <div class="row g-3 justify-content-center">
+      <div class="col-sm-8 col-md-5 col-lg-4">
+        <div class="card text-center shadow-sm p-4">
+          <i class="bi bi-person-circle fs-1 text-secondary"></i>
+          <h4 class="h5 mt-2 mb-0">Sebastián González</h4>
+          <small class="text-muted">Desarrollo Full-Stack (Frontend, CSS, JavaScript, Git)</small>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="pie pt-5 pb-4 mt-5">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <h5><i class="bi bi-hammer"></i> Ferretería Los Maestros</h5>
+          <p class="small">Materiales, herramientas y ferretería general.<br>La Serena, Región de Coquimbo.</p>
+          <p class="small mb-0"><i class="bi bi-credit-card"></i> Visa · Mastercard · Amex · Débito</p>
+        </div>
+        <div class="col-md-4">
+          <h6>Enlaces</h6>
+          <ul class="list-unstyled small">
+            <li><a href="productos.html">Productos</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="blogs.html">Blogs</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h6>Suscríbete a nuestro boletín</h6>
+          <div class="input-group">
+            <input type="email" class="form-control" placeholder="Tu correo">
+            <button class="btn btn-marca">Suscribir</button>
+          </div>
+        </div>
+      </div>
+      <hr class="border-secondary">
+      <p class="text-center small mb-0">© 2026 Ferretería Los Maestros — Proyecto académico DSY1104</p>
+    </div>
+  </footer>
+
+  <!-- ==================== SCRIPTS ==================== -->
+  <script src="js/vendor/bootstrap.bundle.min.js"></script>
+  <script src="js/datos-productos.js"></script>
+  <script src="js/carrito.js"></script>
+  <script src="js/comun.js"></script>
+</body>
+</html>

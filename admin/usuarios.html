@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Usuarios</title>
+  <link href="../css/vendor/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/vendor/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="../css/admin.css" rel="stylesheet">
+</head>
+<body class="admin">
+
+  <div class="admin-layout">
+
+    <!-- ==================== SIDEBAR ==================== -->
+    <aside class="sidebar">
+      <div class="marca"><i class="bi bi-hammer"></i> Los Maestros</div>
+      <nav class="nav flex-column">
+        <div class="seccion-titulo">General</div>
+        <a class="nav-link" href="index.html"><i class="bi bi-speedometer2"></i> Dashboard</a>
+        <div class="seccion-titulo">Gestión</div>
+        <a class="nav-link" href="productos.html"><i class="bi bi-box-seam"></i> Productos</a>
+        <a class="nav-link solo-admin" href="usuarios.html"><i class="bi bi-people"></i> Usuarios</a>
+      </nav>
+      <div class="pie-sidebar">
+        <div><i class="bi bi-person-circle"></i> <span id="nombre-admin">—</span></div>
+        <small class="text-capitalize text-muted" id="rol-admin"></small>
+        <button class="btn btn-sm btn-outline-light w-100 mt-2" id="btn-salir-admin">
+          <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+        </button>
+      </div>
+    </aside>
+
+    <!-- ==================== CONTENIDO ==================== -->
+    <div class="admin-contenido">
+      <div class="admin-topbar">
+        <button class="btn btn-dark btn-menu-movil" id="btn-menu-movil"><i class="bi bi-list"></i></button>
+        <h1>Usuarios</h1>
+        <a href="usuario-nuevo.html" class="btn" style="background:#e8590c;border-color:#e8590c;color:#fff;">
+          <i class="bi bi-plus-lg"></i> Nuevo usuario
+        </a>
+      </div>
+
+      <p class="text-muted"><span id="total-usuarios">0</span> usuarios registrados.</p>
+
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover align-middle" id="tabla-usuarios">
+              <thead class="table-dark">
+                <tr>
+                  <th>Nombre</th>
+                  <th>Correo</th>
+                  <th>Rol</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <!-- admin.js llena este tbody con las filas de usuarios -->
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ==================== SCRIPTS ==================== -->
+  <script src="../js/vendor/bootstrap.bundle.min.js"></script>
+  <script src="../js/datos-productos.js"></script>
+  <script src="../js/datos-usuarios.js"></script>
+  <script src="../js/comun.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

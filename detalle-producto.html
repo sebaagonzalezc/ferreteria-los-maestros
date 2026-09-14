@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ferretería Los Maestros — Detalle del producto</title>
+  <link href="css/vendor/bootstrap.min.css" rel="stylesheet">
+  <link href="css/vendor/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="css/estilos.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ==================== NAVBAR ==================== -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-marca fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html"><i class="bi bi-hammer"></i> Ferretería Los Maestros</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
+              aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="productos.html">Productos</a></li>
+          <li class="nav-item"><a class="nav-link" href="nosotros.html">Nosotros</a></li>
+          <li class="nav-item"><a class="nav-link" href="blogs.html">Blogs</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-3">
+          <div id="zona-usuario" class="d-flex align-items-center text-white small"></div>
+          <a href="carrito.html" class="btn btn-outline-light position-relative">
+            <i class="bi bi-cart"></i>
+            <span class="badge rounded-pill bg-danger contador-carrito"
+                  style="position:absolute; top:-8px; right:-8px;">0</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==================== CONTENIDO ==================== -->
+  <main class="container my-4">
+    <!-- detalle.js llena esto según el ?codigo= de la URL -->
+    <section id="detalle-producto"></section>
+
+    <!-- Productos relacionados -->
+    <section class="mt-5">
+      <h2 class="titulo-seccion">Productos relacionados</h2>
+      <div class="row g-3" id="relacionados"></div>
+    </section>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="pie pt-5 pb-4 mt-5">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <h5><i class="bi bi-hammer"></i> Ferretería Los Maestros</h5>
+          <p class="small">Materiales, herramientas y ferretería general.<br>La Serena, Región de Coquimbo.</p>
+          <p class="small mb-0"><i class="bi bi-credit-card"></i> Visa · Mastercard · Amex · Débito</p>
+        </div>
+        <div class="col-md-4">
+          <h6>Enlaces</h6>
+          <ul class="list-unstyled small">
+            <li><a href="productos.html">Productos</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="blogs.html">Blogs</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h6>Suscríbete a nuestro boletín</h6>
+          <div class="input-group">
+            <input type="email" class="form-control" placeholder="Tu correo">
+            <button class="btn btn-marca">Suscribir</button>
+          </div>
+        </div>
+      </div>
+      <hr class="border-secondary">
+      <p class="text-center small mb-0">© 2026 Ferretería Los Maestros — Proyecto académico DSY1104</p>
+    </div>
+  </footer>
+
+  <!-- ==================== SCRIPTS ==================== -->
+  <script src="js/vendor/bootstrap.bundle.min.js"></script>
+  <script src="js/datos-productos.js"></script>
+  <script src="js/carrito.js"></script>
+  <script src="js/tienda.js"></script>
+  <script src="js/detalle.js"></script>
+  <script src="js/comun.js"></script>
+</body>
+</html>

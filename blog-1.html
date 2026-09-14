@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ferretería Los Maestros — El cemento que respira</title>
+  <link href="css/vendor/bootstrap.min.css" rel="stylesheet">
+  <link href="css/vendor/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="css/estilos.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ==================== NAVBAR ==================== -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-marca fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html"><i class="bi bi-hammer"></i> Ferretería Los Maestros</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
+              aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="productos.html">Productos</a></li>
+          <li class="nav-item"><a class="nav-link" href="nosotros.html">Nosotros</a></li>
+          <li class="nav-item"><a class="nav-link" href="blogs.html">Blogs</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-3">
+          <div id="zona-usuario" class="d-flex align-items-center text-white small"></div>
+          <a href="carrito.html" class="btn btn-outline-light position-relative">
+            <i class="bi bi-cart"></i>
+            <span class="badge rounded-pill bg-danger contador-carrito"
+                  style="position:absolute; top:-8px; right:-8px;">0</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==================== CONTENIDO ==================== -->
+  <main class="container my-4">
+    <nav aria-label="ruta" class="mb-3">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="blogs.html">Blogs</a></li>
+        <li class="breadcrumb-item active">Caso curioso #1</li>
+      </ol>
+    </nav>
+
+    <article class="row justify-content-center">
+      <div class="col-lg-8">
+        <h1 class="fw-bold">El cemento que "respira"</h1>
+        <p class="text-muted">Publicado el 1 de septiembre de 2026 · Ferretería Los Maestros</p>
+        <div class="blog-img mb-4 rounded"><i class="bi bi-lightbulb"></i></div>
+
+        <p class="lead">Muchos creen que el cemento "seca". En realidad, no se seca: <strong>fragua</strong>, que es una reacción química con el agua llamada hidratación.</p>
+
+        <p>Durante esa reacción, el cemento sigue endureciendo y ganando resistencia durante <strong>semanas, meses e incluso años</strong>. Por eso, mantener el hormigón húmedo los primeros días (lo que se llama "curado") es tan importante: si el agua se evapora demasiado rápido, la reacción se detiene y el material queda más débil.</p>
+
+        <h2 class="h4 mt-4">Consejos prácticos</h2>
+        <ul>
+          <li>Riega o cubre el hormigón fresco durante los primeros 7 días.</li>
+          <li>Evita vaciar hormigón en las horas de más calor y viento.</li>
+          <li>Usa el cemento adecuado para cada trabajo (gris para estructura, blanco para terminaciones).</li>
+        </ul>
+
+        <p>En nuestra tienda encuentras cemento <strong>Polpaico</strong> y <strong>Melón</strong>, además de morteros y aditivos para que tu obra quede firme.</p>
+
+        <a href="productos.html" class="btn btn-marca mt-2"><i class="bi bi-box-seam"></i> Ver cementos y morteros</a>
+      </div>
+    </article>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="pie pt-5 pb-4 mt-5">
+    <div class="container">
+      <hr class="border-secondary">
+      <p class="text-center small mb-0">© 2026 Ferretería Los Maestros — Proyecto académico DSY1104</p>
+    </div>
+  </footer>
+
+  <!-- ==================== SCRIPTS ==================== -->
+  <script src="js/vendor/bootstrap.bundle.min.js"></script>
+  <script src="js/datos-productos.js"></script>
+  <script src="js/carrito.js"></script>
+  <script src="js/comun.js"></script>
+</body>
+</html>

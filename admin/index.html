@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Ferretería Los Maestros</title>
+  <link href="../css/vendor/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/vendor/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Este panel usa su PROPIA hoja de estilos (no la de la tienda) -->
+  <link href="../css/admin.css" rel="stylesheet">
+</head>
+<!-- La clase "admin" activa el layout del panel definido en admin.css -->
+<body class="admin">
+
+  <div class="admin-layout">
+
+    <!-- ==================== SIDEBAR (menú vertical) ==================== -->
+    <aside class="sidebar">
+      <div class="marca"><i class="bi bi-hammer"></i> Los Maestros</div>
+      <nav class="nav flex-column">
+        <div class="seccion-titulo">General</div>
+        <a class="nav-link" href="index.html"><i class="bi bi-speedometer2"></i> Dashboard</a>
+        <div class="seccion-titulo">Gestión</div>
+        <a class="nav-link" href="productos.html"><i class="bi bi-box-seam"></i> Productos</a>
+        <!-- .solo-admin: el vendedor NO ve esto (lo oculta admin.js) -->
+        <a class="nav-link solo-admin" href="usuarios.html"><i class="bi bi-people"></i> Usuarios</a>
+      </nav>
+      <div class="pie-sidebar">
+        <div><i class="bi bi-person-circle"></i> <span id="nombre-admin">—</span></div>
+        <small class="text-capitalize text-muted" id="rol-admin"></small>
+        <button class="btn btn-sm btn-outline-light w-100 mt-2" id="btn-salir-admin">
+          <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+        </button>
+      </div>
+    </aside>
+
+    <!-- ==================== CONTENIDO ==================== -->
+    <div class="admin-contenido">
+      <div class="admin-topbar">
+        <button class="btn btn-dark btn-menu-movil" id="btn-menu-movil"><i class="bi bi-list"></i></button>
+        <h1>¡Hola, <span id="saludo-nombre">Administrador</span>!</h1>
+        <a href="../index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-shop"></i> Ver tienda</a>
+      </div>
+
+      <!-- Tarjetas con indicadores (las llena admin.js) -->
+      <div class="row g-3">
+        <div class="col-md-4">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h2 class="h6 text-muted mb-1">Productos</h2>
+                  <p class="fs-3 fw-bold mb-0" id="stat-productos">0</p>
+                </div>
+                <i class="bi bi-box-seam fs-1 text-primary"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 solo-admin">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h2 class="h6 text-muted mb-1">Usuarios</h2>
+                  <p class="fs-3 fw-bold mb-0" id="stat-usuarios">0</p>
+                </div>
+                <i class="bi bi-people fs-1 text-success"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h2 class="h6 text-muted mb-1">En stock crítico</h2>
+                  <p class="fs-3 fw-bold mb-0 text-danger" id="stat-critico">0</p>
+                </div>
+                <i class="bi bi-exclamation-triangle fs-1 text-danger"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card shadow-sm mt-4">
+        <div class="card-body">
+          <h2 class="h5">Bienvenido al panel de gestión</h2>
+          <p class="mb-0 text-muted">
+            Desde aquí puedes administrar el catálogo de productos y los usuarios del sistema.
+            Usa el menú de la izquierda para navegar.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ==================== SCRIPTS ==================== -->
+  <script src="../js/vendor/bootstrap.bundle.min.js"></script>
+  <script src="../js/datos-productos.js"></script>
+  <script src="../js/datos-usuarios.js"></script>
+  <script src="../js/comun.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

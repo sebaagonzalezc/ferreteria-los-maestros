@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ferretería Los Maestros — Iniciar sesión</title>
+  <link href="css/vendor/bootstrap.min.css" rel="stylesheet">
+  <link href="css/vendor/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="css/estilos.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ==================== NAVBAR ==================== -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-marca fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html"><i class="bi bi-hammer"></i> Ferretería Los Maestros</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
+              aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="productos.html">Productos</a></li>
+          <li class="nav-item"><a class="nav-link" href="nosotros.html">Nosotros</a></li>
+          <li class="nav-item"><a class="nav-link" href="blogs.html">Blogs</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-3">
+          <div id="zona-usuario" class="d-flex align-items-center text-white small"></div>
+          <a href="carrito.html" class="btn btn-outline-light position-relative">
+            <i class="bi bi-cart"></i>
+            <span class="badge rounded-pill bg-danger contador-carrito"
+                  style="position:absolute; top:-8px; right:-8px;">0</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==================== CONTENIDO ==================== -->
+  <main class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-5">
+
+        <div class="text-center mb-4">
+          <i class="bi bi-hammer" style="font-size:3rem; color:#e8590c;"></i>
+          <h1 class="h4 mt-2">Ferretería Los Maestros</h1>
+        </div>
+
+        <div class="card shadow-sm">
+          <div class="card-body p-4">
+            <h2 class="h5 mb-3">Iniciar sesión</h2>
+
+            <!-- novalidate desactiva la validación por defecto del navegador,
+                 para usar SOLO la nuestra en JavaScript -->
+            <form id="form-login" novalidate>
+              <div class="mb-3">
+                <label for="login-correo" class="form-label">Correo</label>
+                <input type="email" id="login-correo" class="form-control" placeholder="tucorreo@duoc.cl">
+                <div class="invalid-feedback"></div>
+              </div>
+
+              <div class="mb-3">
+                <label for="login-password" class="form-label">Contraseña</label>
+                <input type="password" id="login-password" class="form-control" placeholder="••••••">
+                <div class="invalid-feedback"></div>
+              </div>
+
+              <button type="submit" class="btn btn-marca w-100">Iniciar sesión</button>
+            </form>
+
+            <p class="text-center mt-3 mb-0 small">
+              ¿No tienes cuenta? <a href="registro.html">Regístrate aquí</a>
+            </p>
+          </div>
+        </div>
+
+        <!-- Ayuda para la demo: usuarios de prueba -->
+        <div class="alert alert-info mt-3 small">
+          <strong>Usuarios de prueba:</strong><br>
+          Admin: <code>admin@duoc.cl</code> / <code>admin123</code><br>
+          Vendedor: <code>vendedor@duoc.cl</code> / <code>venta123</code><br>
+          Cliente: <code>cliente@gmail.com</code> / <code>cliente123</code>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="pie pt-5 pb-4 mt-5">
+    <div class="container">
+      <hr class="border-secondary">
+      <p class="text-center small mb-0">© 2026 Ferretería Los Maestros — Proyecto académico DSY1104</p>
+    </div>
+  </footer>
+
+  <!-- ==================== SCRIPTS ==================== -->
+  <script src="js/vendor/bootstrap.bundle.min.js"></script>
+  <script src="js/datos-productos.js"></script>
+  <script src="js/datos-usuarios.js"></script>
+  <script src="js/carrito.js"></script>
+  <script src="js/validaciones.js"></script>
+  <script src="js/comun.js"></script>
+</body>
+</html>
