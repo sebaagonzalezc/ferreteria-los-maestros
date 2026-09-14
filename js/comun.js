@@ -143,8 +143,8 @@ document.addEventListener("DOMContentLoaded", function () {
       document.querySelector("#btn-salir").addEventListener("click", cerrarSesion);
     } else {
       zonaUsuario.innerHTML =
-        '<a href="' + rutaBase() + 'login.html" class="me-2 text-decoration-none">Iniciar sesión</a>' +
-        '<a href="' + rutaBase() + 'registro.html" class="text-decoration-none">Registrarse</a>';
+        '<a href="' + rutaBase() + 'login.html" class="btn btn-outline-light btn-sm me-2">Iniciar sesión</a>' +
+        '<a href="' + rutaBase() + 'registro.html" class="btn btn-light btn-sm fw-semibold">Registrarse</a>';
     }
   }
 });
