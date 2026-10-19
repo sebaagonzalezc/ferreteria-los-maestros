@@ -2,8 +2,10 @@ import { Link, NavLink } from 'react-router'
 
 /* Barra de navegación de la tienda.
    NavLink (en vez de <a href>) cambia de página SIN recargar, y le pone
-   sola la clase "active" al enlace de la página actual. */
-export function Header() {
+   sola la clase "active" al enlace de la página actual.
+   Prop cantidadCarrito: el número que se muestra en el globito del carrito
+   (el estado del carrito vive en App y llega aquí por props). */
+export function Header({ cantidadCarrito }) {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark navbar-marca fixed-top">
       <div className="container">
@@ -40,8 +42,9 @@ export function Header() {
               <span
                 className="badge rounded-pill bg-danger"
                 style={{ position: 'absolute', top: '-8px', right: '-8px' }}
+                data-testid="contador-carrito"
               >
-                0
+                {cantidadCarrito}
               </span>
             </Link>
           </div>

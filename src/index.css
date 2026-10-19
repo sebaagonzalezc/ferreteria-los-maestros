@@ -155,6 +155,14 @@ footer.pie a:hover { color: #fff; }
   text-align: center;
 }
 
+/* --- AVISO FLOTANTE (toast) --- */
+.aviso-flotante {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 1080;
+}
+
 /* --- BLOGS --- */
 .blog-img {
   height: 200px;        /* alto fijo (mismo motivo que las tarjetas de producto) */

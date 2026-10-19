@@ -1,7 +1,13 @@
 import { Link } from 'react-router'
+import { GrillaProductos } from '../components/GrillaProductos.jsx'
+import { listarProductos } from '../data/productos.js'
 
-/* Home de la tienda: banner principal + productos destacados. */
-export function Inicio() {
+/* Home de la tienda: banner principal + productos destacados.
+   Prop onAgregar: la función de App que agrega al carrito. */
+export function Inicio({ onAgregar }) {
+  // Destacados = los primeros 8 productos del catálogo.
+  const destacados = listarProductos().slice(0, 8)
+
   return (
     <>
       {/* HERO / banner principal */}
@@ -26,8 +32,7 @@ export function Inicio() {
       {/* PRODUCTOS DESTACADOS */}
       <section>
         <h2 className="titulo-seccion">Productos destacados</h2>
-        {/* Siguiente paso: aquí se dibujan las tarjetas con .map() */}
-        <div className="row g-3"></div>
+        <GrillaProductos productos={destacados} onAgregar={onAgregar} />
         <div className="text-center mt-4">
           <Link to="/productos" className="btn btn-outline-dark">
             Ver todo el catálogo <i className="bi bi-arrow-right"></i>
