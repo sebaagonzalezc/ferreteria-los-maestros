@@ -1,111 +1,174 @@
+/* ============================================================
+   index.css  —  Estilos globales de la tienda
+   ------------------------------------------------------------
+   Es el mismo estilos.css de la entrega 1, migrado a React.
+   Se importa en main.jsx DESPUÉS de Bootstrap, por eso nuestras
+   reglas pueden sobrescribir las de Bootstrap cuando hace falta.
+   ============================================================ */
+
+/* --- Variables de color (la "paleta" de la marca) --- */
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+  --naranja: #e8590c;        /* color principal (ferretería / construcción) */
+  --naranja-oscuro: #c94b06;
+  --carbon: #1f2933;         /* gris muy oscuro para navbar y footer */
+  --amarillo: #f7b500;       /* acento */
+  --gris-claro: #f4f5f7;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
-
+/* --- Ajustes generales --- */
 body {
-  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+  color: #2b2b2b;
+  /* padding-top deja espacio para la navbar fija, para que no tape el contenido */
+  padding-top: 70px;
 }
 
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
+/* Título de sección reutilizable */
+.titulo-seccion {
+  font-weight: 700;
+  position: relative;
+  padding-bottom: .5rem;
+  margin-bottom: 2rem;
+}
+.titulo-seccion::after {
+  /* pequeña línea naranja bajo el título */
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 60px;
+  height: 4px;
+  background: var(--naranja);
+}
+.text-center .titulo-seccion::after,
+.titulo-seccion.text-center::after { left: 50%; transform: translateX(-50%); }
+
+/* --- NAVBAR --- */
+.navbar-marca {
+  background-color: var(--carbon) !important;
+}
+.navbar-brand {
+  font-weight: 700;
+  letter-spacing: .5px;
+}
+.navbar-brand .bi { color: var(--naranja); }
+
+/* El enlace de la página actual se resalta en amarillo.
+   En la entrega 1 la clase "activo" la ponía comun.js a mano;
+   ahora NavLink de React Router pone sola la clase "active". */
+.navbar .nav-link.active {
+  color: var(--amarillo) !important;
+  font-weight: 600;
+}
+
+/* Botón principal con el color de la marca */
+.btn-marca {
+  background-color: var(--naranja);
+  border-color: var(--naranja);
+  color: #fff;
+}
+.btn-marca:hover {
+  background-color: var(--naranja-oscuro);
+  border-color: var(--naranja-oscuro);
+  color: #fff;
+}
+
+/* --- HERO (banner principal del home) --- */
+.hero {
+  background: linear-gradient(135deg, var(--carbon) 0%, #3a4750 100%);
+  color: #fff;
+  border-radius: 12px;
+  padding: 3rem 2rem;
+}
+.hero h1 { font-weight: 800; }
+
+/* --- TARJETAS DE PRODUCTO --- */
+.card-producto {
+  transition: transform .15s ease, box-shadow .15s ease;
+  height: 100%;
+}
+.card-producto:hover {
+  transform: translateY(-4px);            /* se eleva al pasar el mouse */
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.12);
+}
+.card-producto .precio {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--naranja);
+}
+/* La "imagen" del producto es un recuadro de color con el ícono.
+   Usamos ALTURA FIJA (no aspect-ratio) para que todas las tarjetas
+   queden parejas y no se estiren dentro del flex. */
+.card-producto .imagen-producto,
+.detalle-imagen {
   display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  background: var(--gris-claro);
+  color: var(--carbon);
+  font-size: 3rem;
+  height: 180px;         /* alto fijo del recuadro de la tarjeta */
+  width: 100%;
+  position: relative;    /* para poder poner la foto encima */
+  overflow: hidden;
+}
+.detalle-imagen { font-size: 6rem; border-radius: 12px; height: 320px; }
+
+/* La foto del producto cubre el recuadro sin deformarse. */
+.img-cover {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;     /* recorta para llenar el recuadro sin estirar */
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+/* Etiqueta de stock crítico */
+.badge-stock-critico {
+  background-color: #dc3545;
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
+/* --- FOOTER --- */
+footer.pie {
+  background-color: var(--carbon);
+  color: #cfd6dd;
 }
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
+footer.pie a { color: #cfd6dd; text-decoration: none; }
+footer.pie a:hover { color: #fff; }
+
+/* --- MENSAJES DE VALIDACIÓN --- */
+.invalid-feedback.mostrar { display: block; }
+
+/* --- CARRITO --- */
+.carrito-item .imagen-mini {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gris-claro);
+  font-size: 1.8rem;
+  border-radius: 8px;
 }
-p {
-  margin: 0;
+.control-cantidad {
+  width: 60px;
+  text-align: center;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+/* --- BLOGS --- */
+.blog-img {
+  height: 200px;        /* alto fijo (mismo motivo que las tarjetas de producto) */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gris-claro);
+  font-size: 3rem;
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+/* --- Detalle responsivo extra ---
+   En pantallas chicas (celular) reducimos un poco el hero. */
+@media (max-width: 576px) {
+  .hero { padding: 2rem 1rem; }
+  body { padding-top: 64px; }
 }
