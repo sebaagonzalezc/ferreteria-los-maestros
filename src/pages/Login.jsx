@@ -1,8 +1,37 @@
+import { useState } from 'react'
 import { Link } from 'react-router'
+import { useFormulario } from '../hooks/useFormulario.js'
+import { validarCorreo, validarPassword } from '../utils/validaciones.js'
+import { autenticar } from '../data/usuarios.js'
+
+/* Reglas del formulario: devuelve un error por campo ("" = válido). */
+function validarLogin(valores) {
+  return {
+    correo: validarCorreo(valores.correo),
+    password: validarPassword(valores.password),
+  }
+}
 
 /* Inicio de sesión.
-   Siguiente paso: inputs controlados con useState + validación + login con los usuarios de prueba. */
-export function Login() {
+   Prop onIniciarSesion: función de App que guarda la sesión. */
+export function Login({ onIniciarSesion }) {
+  const form = useFormulario({ correo: '', password: '' }, validarLogin)
+  const [errorLogin, setErrorLogin] = useState('')
+
+  function enviar(evento) {
+    evento.preventDefault()   // evita que la página se recargue
+    setErrorLogin('')
+    form.marcarTodos()
+    if (!form.esValido) return
+
+    const usuario = autenticar(form.valores.correo, form.valores.password)
+    if (!usuario) {
+      setErrorLogin('Correo o contraseña incorrectos.')
+      return
+    }
+    onIniciarSesion(usuario)
+  }
+
   return (
     <div className="row justify-content-center my-4">
       <div className="col-md-6 col-lg-5">
@@ -17,20 +46,42 @@ export function Login() {
             <h2 className="h5 mb-3">Iniciar sesión</h2>
 
             {/* noValidate desactiva la validación del navegador para usar solo la nuestra */}
-            <form noValidate>
+            <form noValidate onSubmit={enviar}>
               <div className="mb-3">
                 <label htmlFor="login-correo" className="form-label">Correo</label>
-                <input type="email" id="login-correo" className="form-control" placeholder="tucorreo@duoc.cl" />
-                <div className="invalid-feedback"></div>
+                <input
+                  type="email"
+                  id="login-correo"
+                  name="correo"
+                  className={form.claseDe('correo')}
+                  placeholder="tucorreo@duoc.cl"
+                  value={form.valores.correo}
+                  onChange={form.cambiar}
+                />
+                <div className="invalid-feedback">{form.errores.correo}</div>
               </div>
 
               <div className="mb-3">
                 <label htmlFor="login-password" className="form-label">Contraseña</label>
-                <input type="password" id="login-password" className="form-control" placeholder="••••••" />
-                <div className="invalid-feedback"></div>
+                <input
+                  type="password"
+                  id="login-password"
+                  name="password"
+                  className={form.claseDe('password')}
+                  placeholder="••••••"
+                  value={form.valores.password}
+                  onChange={form.cambiar}
+                />
+                <div className="invalid-feedback">{form.errores.password}</div>
               </div>
 
               <button type="submit" className="btn btn-marca w-100">Iniciar sesión</button>
+
+              {errorLogin && (
+                <div className="alert alert-danger mt-3 mb-0" role="alert">
+                  <i className="bi bi-exclamation-triangle-fill"></i> {errorLogin}
+                </div>
+              )}
             </form>
 
             <p className="text-center mt-3 mb-0 small">

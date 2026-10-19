@@ -3,9 +3,11 @@ import { Link, NavLink } from 'react-router'
 /* Barra de navegación de la tienda.
    NavLink (en vez de <a href>) cambia de página SIN recargar, y le pone
    sola la clase "active" al enlace de la página actual.
-   Prop cantidadCarrito: el número que se muestra en el globito del carrito
-   (el estado del carrito vive en App y llega aquí por props). */
-export function Header({ cantidadCarrito }) {
+   Props (el estado vive en App y llega aquí por props):
+     cantidadCarrito -> número del globito del carrito
+     sesion          -> usuario logeado o null
+     onCerrarSesion  -> función para cerrar sesión */
+export function Header({ cantidadCarrito, sesion, onCerrarSesion }) {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark navbar-marca fixed-top">
       <div className="container">
@@ -32,10 +34,21 @@ export function Header({ cantidadCarrito }) {
             <li className="nav-item"><NavLink className="nav-link" to="/contacto">Contacto</NavLink></li>
           </ul>
           <div className="d-flex align-items-center gap-3">
-            {/* Paso del carrito/sesión: aquí se mostrará "Hola, nombre" si hay sesión */}
+            {/* Renderizado condicional: con sesión se saluda; sin sesión, botones de acceso */}
             <div className="d-flex align-items-center text-white small">
-              <Link to="/login" className="btn btn-outline-light btn-sm me-2">Iniciar sesión</Link>
-              <Link to="/registro" className="btn btn-light btn-sm fw-semibold">Registrarse</Link>
+              {sesion ? (
+                <>
+                  <span className="me-2">Hola, {sesion.nombre}</span>
+                  <button className="btn btn-sm btn-outline-light" onClick={onCerrarSesion}>
+                    Cerrar sesión
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link to="/login" className="btn btn-outline-light btn-sm me-2">Iniciar sesión</Link>
+                  <Link to="/registro" className="btn btn-light btn-sm fw-semibold">Registrarse</Link>
+                </>
+              )}
             </div>
             <Link to="/carrito" className="btn btn-outline-light position-relative" aria-label="Ver carrito">
               <i className="bi bi-cart"></i>

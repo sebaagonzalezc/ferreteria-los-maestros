@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Route, Routes } from 'react-router'
+import { Route, Routes, useNavigate } from 'react-router'
 import { Header } from './components/Header.jsx'
 import { Footer } from './components/Footer.jsx'
 import { Aviso } from './components/Aviso.jsx'
@@ -24,16 +24,21 @@ import {
   leerCarrito,
   quitarItem,
 } from './utils/carrito.js'
+import { borrarSesion, guardarSesion, leerSesion } from './utils/sesion.js'
 
-/* App es el "molde" de toda la tienda y GUARDA EL ESTADO del carrito.
-   ¿Por qué aquí? Porque lo necesitan varios componentes a la vez:
-     - el Header (para el contador)
+/* App es el "molde" de toda la tienda y GUARDA EL ESTADO compartido:
+   el carrito y la sesión. ¿Por qué aquí? Porque lo necesitan varios
+   componentes a la vez:
+     - el Header (contador del carrito y "Hola, nombre")
      - las páginas que agregan productos (Inicio, Productos, Detalle)
-     - la página del Carrito (para listarlo y modificarlo)
+     - la página del Carrito y la de Login
    El estado vive en el "padre común" y baja a cada hijo por PROPS. */
 export function App() {
+  const navegar = useNavigate()
   // Estado del carrito. leerCarrito trae lo guardado en localStorage (solo al inicio).
   const [carrito, setCarrito] = useState(leerCarrito)
+  // Usuario logeado ({ correo, nombre, rol }) o null si no hay sesión.
+  const [sesion, setSesion] = useState(leerSesion)
   // Texto del aviso flotante ("" = sin aviso).
   const [aviso, setAviso] = useState('')
 
@@ -60,13 +65,26 @@ export function App() {
     setCarrito([])
   }
 
+  function iniciarSesion(usuario) {
+    guardarSesion(usuario)
+    setSesion(usuario)
+    setAviso(`¡Bienvenido/a, ${usuario.nombre}!`)
+    navegar('/')
+  }
+
+  function cerrarSesion() {
+    borrarSesion()
+    setSesion(null)
+    navegar('/')
+  }
+
   // useCallback mantiene la MISMA función entre renders, para que el
   // temporizador del Aviso no se reinicie cada vez que App se redibuja.
   const cerrarAviso = useCallback(() => setAviso(''), [])
 
   return (
     <>
-      <Header cantidadCarrito={contarItems(carrito)} />
+      <Header cantidadCarrito={contarItems(carrito)} sesion={sesion} onCerrarSesion={cerrarSesion} />
       <main className="container my-4">
         <Routes>
           <Route path="/" element={<Inicio onAgregar={agregarAlCarrito} />} />
@@ -83,7 +101,7 @@ export function App() {
               />
             }
           />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login onIniciarSesion={iniciarSesion} />} />
           <Route path="/registro" element={<Registro />} />
           <Route path="/nosotros" element={<Nosotros />} />
           <Route path="/blogs" element={<Blogs />} />

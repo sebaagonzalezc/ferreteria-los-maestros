@@ -80,7 +80,9 @@ body {
   border-radius: 12px;
   padding: 3rem 2rem;
 }
-.hero h1 { font-weight: 800; }
+/* Color explícito: si se hereda, algunos navegadores (visto en Firefox)
+   lo mostraban oscuro sobre el fondo oscuro. */
+.hero h1 { font-weight: 800; color: #fff; }
 
 /* --- TARJETAS DE PRODUCTO --- */
 .card-producto {
