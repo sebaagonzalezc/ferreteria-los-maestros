@@ -1,0 +1,111 @@
+/* ============================================================
+   admin.css  —  Estilos EXCLUSIVOS del panel de administrador
+   ------------------------------------------------------------
+   Mismo diseño de la entrega 1: menú VERTICAL (sidebar) a la
+   izquierda y el contenido al centro. Se importa solo en
+   AdminLayout.jsx (CSS propio de una sección, como en el video 3).
+   ============================================================ */
+:root {
+  --admin-oscuro: #1f2933;
+  --admin-activo: #e8590c;
+  --admin-hover: #323f4b;
+}
+
+/* Contenedor general: sidebar + contenido lado a lado */
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #eef1f4;
+}
+
+/* --- BARRA LATERAL (SIDEBAR) --- */
+.sidebar {
+  width: 240px;
+  background: var(--admin-oscuro);
+  color: #cfd6dd;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+.sidebar .marca {
+  padding: 1.25rem 1rem;
+  font-weight: 700;
+  color: #fff;
+  font-size: 1.1rem;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.sidebar .marca .bi { color: var(--admin-activo); }
+.sidebar .nav-link {
+  color: #cfd6dd;
+  padding: .75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  border-left: 3px solid transparent;
+}
+.sidebar .nav-link:hover {
+  background: var(--admin-hover);
+  color: #fff;
+}
+/* NavLink pone "active" en el ítem de la página actual */
+.sidebar .nav-link.active {
+  background: var(--admin-hover);
+  color: #fff;
+  border-left-color: var(--admin-activo);
+}
+.sidebar .seccion-titulo {
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: #7b8794;
+  padding: 1rem 1rem .25rem;
+}
+.sidebar .pie-sidebar {
+  margin-top: auto;
+  padding: 1rem;
+  border-top: 1px solid rgba(255,255,255,.08);
+  font-size: .85rem;
+}
+
+/* --- CONTENIDO PRINCIPAL --- */
+.admin-contenido {
+  flex-grow: 1;
+  padding: 1.5rem 2rem;
+  min-width: 0;               /* permite que las tablas anchas hagan scroll */
+}
+.admin-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.admin-topbar h1 { font-size: 1.6rem; font-weight: 700; margin: 0; }
+
+.sidebar-fondo { display: none; }
+
+/* ============================================================
+   RESPONSIVE: en pantallas chicas (bajo 768px, igual que "md" de
+   Bootstrap) el sidebar se esconde y se abre con el botón
+   hamburguesa (estado menuAbierto en AdminLayout).
+   ============================================================ */
+@media (max-width: 767.98px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: 1050;
+    transform: translateX(-100%);
+    transition: transform .25s ease;
+  }
+  .admin-layout.sidebar-abierto .sidebar { transform: translateX(0); }
+  .admin-layout.sidebar-abierto .sidebar-fondo {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.4);
+    z-index: 1040;
+  }
+  .admin-contenido { padding: 1rem; }
+}

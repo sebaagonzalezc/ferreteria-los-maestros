@@ -61,5 +61,10 @@ export function useFormulario(valoresIniciales, validar) {
     return `${base} ${errores[campo] ? 'is-invalid' : 'is-valid'}`
   }
 
-  return { valores, errores, tocados, esValido, cambiar, asignar, marcarTodos, reiniciar, claseDe }
+  /* Mensaje de error a mostrar: solo si el campo ya fue tocado. */
+  function errorDe(campo) {
+    return tocados[campo] ? errores[campo] : ''
+  }
+
+  return { valores, errores, tocados, esValido, cambiar, asignar, marcarTodos, reiniciar, claseDe, errorDe }
 }

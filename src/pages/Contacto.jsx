@@ -42,7 +42,7 @@ export function Contacto() {
                 <label htmlFor="con-nombre" className="form-label">Nombre completo <span className="text-danger">*</span></label>
                 <input type="text" id="con-nombre" name="nombre" className={form.claseDe('nombre')} maxLength={100}
                   value={form.valores.nombre} onChange={form.cambiar} />
-                <div className="invalid-feedback">{form.errores.nombre}</div>
+                <div className="invalid-feedback">{form.errorDe('nombre')}</div>
               </div>
 
               <div className="mb-3">
@@ -50,7 +50,7 @@ export function Contacto() {
                 <input type="email" id="con-correo" name="correo" className={form.claseDe('correo')}
                   placeholder="tucorreo@gmail.com"
                   value={form.valores.correo} onChange={form.cambiar} />
-                <div className="invalid-feedback">{form.errores.correo}</div>
+                <div className="invalid-feedback">{form.errorDe('correo')}</div>
               </div>
 
               <div className="mb-3">
@@ -65,7 +65,7 @@ export function Contacto() {
                   value={form.valores.comentario}
                   onChange={form.cambiar}
                 ></textarea>
-                <div className="invalid-feedback">{form.errores.comentario}</div>
+                <div className="invalid-feedback">{form.errorDe('comentario')}</div>
               </div>
 
               <button type="submit" className="btn btn-marca w-100">

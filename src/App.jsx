@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Route, Routes, useNavigate } from 'react-router'
-import { Header } from './components/Header.jsx'
-import { Footer } from './components/Footer.jsx'
+import { LayoutTienda } from './components/LayoutTienda.jsx'
 import { Aviso } from './components/Aviso.jsx'
 import { Inicio } from './pages/Inicio.jsx'
 import { Productos } from './pages/Productos.jsx'
@@ -15,6 +14,12 @@ import { Blog1 } from './pages/Blog1.jsx'
 import { Blog2 } from './pages/Blog2.jsx'
 import { Contacto } from './pages/Contacto.jsx'
 import { NoEncontrado } from './pages/NoEncontrado.jsx'
+import { AdminLayout, SoloAdmin } from './pages/admin/AdminLayout.jsx'
+import { AdminDashboard } from './pages/admin/AdminDashboard.jsx'
+import { AdminProductos } from './pages/admin/AdminProductos.jsx'
+import { FormularioProducto } from './pages/admin/FormularioProducto.jsx'
+import { AdminUsuarios } from './pages/admin/AdminUsuarios.jsx'
+import { FormularioUsuario } from './pages/admin/FormularioUsuario.jsx'
 import { buscarProducto } from './data/productos.js'
 import {
   agregarItem,
@@ -26,20 +31,21 @@ import {
 } from './utils/carrito.js'
 import { borrarSesion, guardarSesion, leerSesion } from './utils/sesion.js'
 
-/* App es el "molde" de toda la tienda y GUARDA EL ESTADO compartido:
-   el carrito y la sesión. ¿Por qué aquí? Porque lo necesitan varios
-   componentes a la vez:
+/* App GUARDA EL ESTADO compartido (carrito y sesión) y define las rutas.
+   ¿Por qué el estado aquí? Porque lo necesitan varios componentes a la vez:
      - el Header (contador del carrito y "Hola, nombre")
      - las páginas que agregan productos (Inicio, Productos, Detalle)
-     - la página del Carrito y la de Login
-   El estado vive en el "padre común" y baja a cada hijo por PROPS. */
+     - el Carrito, el Login y el panel admin (para proteger por rol)
+   El estado vive en el "padre común" y baja a cada hijo por PROPS.
+
+   Rutas ANIDADAS: hay dos "moldes" (layouts):
+     - LayoutTienda: header + página + footer   -> rutas de la tienda
+     - AdminLayout:  sidebar + página            -> rutas /admin/...
+   Cada layout dibuja a su ruta hija dentro de <Outlet />. */
 export function App() {
   const navegar = useNavigate()
-  // Estado del carrito. leerCarrito trae lo guardado en localStorage (solo al inicio).
   const [carrito, setCarrito] = useState(leerCarrito)
-  // Usuario logeado ({ correo, nombre, rol }) o null si no hay sesión.
   const [sesion, setSesion] = useState(leerSesion)
-  // Texto del aviso flotante ("" = sin aviso).
   const [aviso, setAviso] = useState('')
 
   // Cada vez que el carrito cambia, lo guardamos en localStorage.
@@ -69,7 +75,8 @@ export function App() {
     guardarSesion(usuario)
     setSesion(usuario)
     setAviso(`¡Bienvenido/a, ${usuario.nombre}!`)
-    navegar('/')
+    // Según el rol: el personal va al panel; el cliente, a la tienda.
+    navegar(usuario.rol === 'cliente' ? '/' : '/admin')
   }
 
   function cerrarSesion() {
@@ -84,9 +91,13 @@ export function App() {
 
   return (
     <>
-      <Header cantidadCarrito={contarItems(carrito)} sesion={sesion} onCerrarSesion={cerrarSesion} />
-      <main className="container my-4">
-        <Routes>
+      <Routes>
+        {/* ---------- TIENDA ---------- */}
+        <Route
+          element={
+            <LayoutTienda cantidadCarrito={contarItems(carrito)} sesion={sesion} onCerrarSesion={cerrarSesion} />
+          }
+        >
           <Route path="/" element={<Inicio onAgregar={agregarAlCarrito} />} />
           <Route path="/productos" element={<Productos onAgregar={agregarAlCarrito} />} />
           <Route path="/producto/:codigo" element={<DetalleProducto onAgregar={agregarAlCarrito} />} />
@@ -110,9 +121,19 @@ export function App() {
           <Route path="/contacto" element={<Contacto />} />
           {/* "*" = cualquier otra URL que no esté arriba */}
           <Route path="*" element={<NoEncontrado />} />
-        </Routes>
-      </main>
-      <Footer />
+        </Route>
+
+        {/* ---------- PANEL ADMIN (protegido por rol en AdminLayout) ---------- */}
+        <Route path="/admin" element={<AdminLayout sesion={sesion} onCerrarSesion={cerrarSesion} />}>
+          <Route index element={<AdminDashboard sesion={sesion} />} />
+          <Route path="productos" element={<AdminProductos />} />
+          <Route path="productos/nuevo" element={<FormularioProducto key="nuevo" />} />
+          <Route path="productos/:codigo/editar" element={<FormularioProducto key="editar" />} />
+          <Route path="usuarios" element={<SoloAdmin sesion={sesion}><AdminUsuarios sesion={sesion} /></SoloAdmin>} />
+          <Route path="usuarios/nuevo" element={<SoloAdmin sesion={sesion}><FormularioUsuario key="nuevo" /></SoloAdmin>} />
+          <Route path="usuarios/:correo/editar" element={<SoloAdmin sesion={sesion}><FormularioUsuario key="editar" /></SoloAdmin>} />
+        </Route>
+      </Routes>
       <Aviso mensaje={aviso} onCerrar={cerrarAviso} />
     </>
   )

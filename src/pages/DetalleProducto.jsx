@@ -51,16 +51,20 @@ export function DetalleProducto({ onAgregar }) {
 
         {/* Columna derecha: datos y botón */}
         <div className="col-md-6">
-          <span className="badge bg-secondary mb-2">{producto.categoria} · {producto.subcategoria}</span>
+          <span className="badge bg-secondary mb-2">
+            {producto.categoria}{producto.subcategoria ? ` · ${producto.subcategoria}` : ''}
+          </span>
           <h1 className="h3 fw-bold">{producto.nombre}</h1>
           <p className="text-muted mb-1">
-            Marca: <strong>{producto.marca}</strong> · Código: {producto.codigo}
+            {producto.marca && <>Marca: <strong>{producto.marca}</strong> · </>}Código: {producto.codigo}
           </p>
           <p className="precio fs-2 fw-bold" style={{ color: '#e8590c' }}>{formatearPrecio(producto.precio)}</p>
+          {/* Si el admin escribió una descripción se usa esa; si no, se arma una con los datos. */}
           <p>
-            Producto de la categoría <strong>{producto.categoria}</strong> ({producto.subcategoria}),
-            marca {producto.marca}. Se vende por {producto.unidad.toLowerCase()}.
-            Ideal para tus proyectos de construcción y mantención.
+            {producto.descripcion ||
+              `Producto de la categoría ${producto.categoria}${producto.marca ? `, marca ${producto.marca}` : ''}. ` +
+              `Se vende por ${(producto.unidad || 'unidad').toLowerCase()}. ` +
+              'Ideal para tus proyectos de construcción y mantención.'}
           </p>
 
           {/* Estado de stock (renderizado condicional) */}
@@ -68,7 +72,7 @@ export function DetalleProducto({ onAgregar }) {
             <p className={critico ? 'text-danger' : 'text-success'}>
               <i className="bi bi-box-seam"></i>{' '}
               {critico
-                ? `¡Solo quedan ${producto.stock} ${producto.unidad.toLowerCase()}!`
+                ? `¡Solo quedan ${producto.stock} ${(producto.unidad || 'unidades').toLowerCase()}!`
                 : `En stock (${producto.stock} disponibles)`}
             </p>
           ) : (

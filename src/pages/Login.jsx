@@ -58,7 +58,7 @@ export function Login({ onIniciarSesion }) {
                   value={form.valores.correo}
                   onChange={form.cambiar}
                 />
-                <div className="invalid-feedback">{form.errores.correo}</div>
+                <div className="invalid-feedback">{form.errorDe('correo')}</div>
               </div>
 
               <div className="mb-3">
@@ -72,7 +72,7 @@ export function Login({ onIniciarSesion }) {
                   value={form.valores.password}
                   onChange={form.cambiar}
                 />
-                <div className="invalid-feedback">{form.errores.password}</div>
+                <div className="invalid-feedback">{form.errorDe('password')}</div>
               </div>
 
               <button type="submit" className="btn btn-marca w-100">Iniciar sesión</button>

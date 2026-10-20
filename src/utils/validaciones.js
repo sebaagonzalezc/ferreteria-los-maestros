@@ -48,6 +48,39 @@ export function validarSeleccion(valor, queSeleccionar) {
   return valor === '' ? `Selecciona ${queSeleccionar}.` : ''
 }
 
+/* Texto OPCIONAL con largo máximo (vacío = válido). */
+export function validarOpcional(valor, maximo) {
+  return valor.trim().length > maximo ? `Máximo ${maximo} caracteres.` : ''
+}
+
+/* Código de producto: obligatorio, mínimo 3 caracteres. */
+export function validarCodigoProducto(valor) {
+  const codigo = valor.trim()
+  if (codigo === '') return 'El código es obligatorio.'
+  if (codigo.length < 3) return 'Mínimo 3 caracteres.'
+  return ''
+}
+
+/* Precio: obligatorio, número, mínimo 0 (0 = gratis). Acepta decimales. */
+export function validarPrecio(valor) {
+  const texto = String(valor).trim()
+  if (texto === '') return 'El precio es obligatorio.'
+  const numero = Number(texto)
+  if (isNaN(numero)) return 'Debe ser un número.'
+  if (numero < 0) return 'El precio no puede ser negativo.'
+  return ''
+}
+
+/* Número entero >= 0 (stock, stock crítico). opcional = puede ir vacío. */
+export function validarEntero(valor, nombreCampo, opcional = false) {
+  const texto = String(valor).trim()
+  if (texto === '') return opcional ? '' : `${nombreCampo} es obligatorio.`
+  const numero = Number(texto)
+  if (!Number.isInteger(numero)) return 'Debe ser un número entero.'
+  if (numero < 0) return 'No puede ser negativo.'
+  return ''
+}
+
 /* Calcula el dígito verificador de un RUN (algoritmo módulo 11). */
 export function calcularDigitoVerificador(cuerpo) {
   let suma = 0

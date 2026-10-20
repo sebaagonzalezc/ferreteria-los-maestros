@@ -96,21 +96,21 @@ export function Registro() {
                   <input type="text" id="reg-run" name="run" className={form.claseDe('run')}
                     placeholder="Ej: 123456785 (sin puntos ni guion)"
                     value={form.valores.run} onChange={form.cambiar} />
-                  <div className="invalid-feedback">{form.errores.run}</div>
+                  <div className="invalid-feedback">{form.errorDe('run')}</div>
                 </div>
 
                 <div className="col-md-6">
                   <label htmlFor="reg-nombre" className="form-label">Nombre <span className="text-danger">*</span></label>
                   <input type="text" id="reg-nombre" name="nombre" className={form.claseDe('nombre')} maxLength={50}
                     value={form.valores.nombre} onChange={form.cambiar} />
-                  <div className="invalid-feedback">{form.errores.nombre}</div>
+                  <div className="invalid-feedback">{form.errorDe('nombre')}</div>
                 </div>
 
                 <div className="col-md-6">
                   <label htmlFor="reg-apellidos" className="form-label">Apellidos <span className="text-danger">*</span></label>
                   <input type="text" id="reg-apellidos" name="apellidos" className={form.claseDe('apellidos')} maxLength={100}
                     value={form.valores.apellidos} onChange={form.cambiar} />
-                  <div className="invalid-feedback">{form.errores.apellidos}</div>
+                  <div className="invalid-feedback">{form.errorDe('apellidos')}</div>
                 </div>
 
                 <div className="col-md-6">
@@ -118,7 +118,7 @@ export function Registro() {
                   <input type="email" id="reg-correo" name="correo" className={form.claseDe('correo')}
                     placeholder="tucorreo@gmail.com"
                     value={form.valores.correo} onChange={form.cambiar} />
-                  <div className="invalid-feedback">{form.errores.correo}</div>
+                  <div className="invalid-feedback">{form.errorDe('correo')}</div>
                 </div>
 
                 <div className="col-md-6">
@@ -126,14 +126,14 @@ export function Registro() {
                   <input type="password" id="reg-password" name="password" className={form.claseDe('password')}
                     placeholder="Entre 4 y 10 caracteres"
                     value={form.valores.password} onChange={form.cambiar} />
-                  <div className="invalid-feedback">{form.errores.password}</div>
+                  <div className="invalid-feedback">{form.errorDe('password')}</div>
                 </div>
 
                 <div className="col-md-6">
                   <label htmlFor="reg-password2" className="form-label">Confirmar contraseña <span className="text-danger">*</span></label>
                   <input type="password" id="reg-password2" name="password2" className={form.claseDe('password2')}
                     value={form.valores.password2} onChange={form.cambiar} />
-                  <div className="invalid-feedback">{form.errores.password2}</div>
+                  <div className="invalid-feedback">{form.errorDe('password2')}</div>
                 </div>
 
                 <div className="col-md-6">
@@ -145,7 +145,7 @@ export function Registro() {
                       <option key={r.nombre} value={r.nombre}>{r.nombre}</option>
                     ))}
                   </select>
-                  <div className="invalid-feedback">{form.errores.region}</div>
+                  <div className="invalid-feedback">{form.errorDe('region')}</div>
                 </div>
 
                 <div className="col-md-6">
@@ -157,14 +157,14 @@ export function Registro() {
                       <option key={c} value={c}>{c}</option>
                     ))}
                   </select>
-                  <div className="invalid-feedback">{form.errores.comuna}</div>
+                  <div className="invalid-feedback">{form.errorDe('comuna')}</div>
                 </div>
 
                 <div className="col-12">
                   <label htmlFor="reg-direccion" className="form-label">Dirección <span className="text-danger">*</span></label>
                   <input type="text" id="reg-direccion" name="direccion" className={form.claseDe('direccion')} maxLength={300}
                     value={form.valores.direccion} onChange={form.cambiar} />
-                  <div className="invalid-feedback">{form.errores.direccion}</div>
+                  <div className="invalid-feedback">{form.errorDe('direccion')}</div>
                 </div>
 
                 <div className="col-12">

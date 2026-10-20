@@ -13,6 +13,13 @@
 
 const CLAVE_PRODUCTOS = 'flm_productos'
 
+/* Opciones para los formularios del administrador. */
+export const CATEGORIAS = [
+  'Mat. Construcción', 'Pinturas', 'Herramientas', 'Gasfitería', 'Electricidad',
+  'Tornillería', 'Madera', 'Seguridad', 'Jardín',
+]
+export const UNIDADES = ['Unidad', 'Saco', 'Galón', 'Litro', 'Metro', 'Kilo', 'Caja']
+
 /* Catálogo inicial (el mismo de la entrega 1).
    Las imágenes empiezan con "/" para que funcionen desde cualquier ruta,
    por ejemplo desde /producto/MC001. */

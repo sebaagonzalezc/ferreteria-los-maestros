@@ -19,7 +19,11 @@
 body {
   font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
   color: #2b2b2b;
-  /* padding-top deja espacio para la navbar fija, para que no tape el contenido */
+}
+
+/* Solo la tienda tiene navbar fija: este espacio evita que tape el contenido.
+   (El panel admin tiene su propio layout, sin navbar fija.) */
+.tienda {
   padding-top: 70px;
 }
 
@@ -180,5 +184,5 @@ footer.pie a:hover { color: #fff; }
    En pantallas chicas (celular) reducimos un poco el hero. */
 @media (max-width: 576px) {
   .hero { padding: 2rem 1rem; }
-  body { padding-top: 64px; }
+  .tienda { padding-top: 64px; }
 }

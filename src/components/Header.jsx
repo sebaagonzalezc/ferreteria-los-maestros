@@ -39,6 +39,12 @@ export function Header({ cantidadCarrito, sesion, onCerrarSesion }) {
               {sesion ? (
                 <>
                   <span className="me-2">Hola, {sesion.nombre}</span>
+                  {/* Solo administrador y vendedor ven el acceso al panel */}
+                  {sesion.rol !== 'cliente' && (
+                    <Link to="/admin" className="btn btn-sm btn-marca me-2">
+                      <i className="bi bi-speedometer2"></i> Panel
+                    </Link>
+                  )}
                   <button className="btn btn-sm btn-outline-light" onClick={onCerrarSesion}>
                     Cerrar sesión
                   </button>
